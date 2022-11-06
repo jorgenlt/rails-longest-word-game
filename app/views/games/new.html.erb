@@ -1,0 +1,27 @@
+<h3 class="text-center mt-3">new game.</h3>
+<div class="container">
+  <div class="mt-5 mb-5" id="letters-div">
+    <ul id="letters" class=".flex-row d-flex justify-content-center">
+      <%=
+      ul_list = ''
+      @letters.each do |letter|
+          ul_list += "<div class='letter'><li>#{letter}</li></div>\n"
+      end
+      ul_list.html_safe
+      %>
+    </ul>
+  </div>
+  <div>
+    <h5 class="text-center mb-5">Enter the longest english word you can find using only the letters above.</h5>
+    <form class="d-flex flex-row justify-content-center" action="/score" method="post" data-turbo="false">
+        <div id="input-form">
+          <input class="form-control form-control-lg border mb-2" type="text" name="guess" placeholder="What's your suggestion?">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= hidden_field_tag 'grid', @letters  %>
+        </div>
+        <div>
+          <button class="btn-lg btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+  </div>
+</div>
