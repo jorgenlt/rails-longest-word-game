@@ -7,7 +7,9 @@ class GamesController < ApplicationController
   end
 
   def score
-    @result = run_game(params[:guess], params[:grid].gsub(' ', ''))
+    attempt = params[:guess]
+    grid = params[:grid]
+    @result = run_game(attempt, grid)
   end
 
   # LONGEST WORD GAME
